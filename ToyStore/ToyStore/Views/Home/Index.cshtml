@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ToyStore.Models.Products>
+
+<h2>ToyStore</h2>
+<br />
+
+@using (Html.BeginForm())
+{
+    <form method="post">
+        <div class="row">
+            <div class="col-sm-3"> <input type="text" class="form-control" name="Search" placeholder="Search"> </div>
+            <div class="col-sm-2"> <button type="submit" class="btn btn-primary">Search</button> </div>
+        </div>
+    </form>
+}
+
+<br />
+
+<div class="row">
+    
+    <div class="col-xs-8">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            
+            @foreach (var item in Model) { 
+            <tr>
+                    <td><img src='@Url.Content(@item.Image)' width="100"/></td>
+                      
+                    <td>@Html.DisplayFor(modelItem => item.Descripton)</td>
+                    <td>£@Html.DisplayFor(modelItem => item.Price)</td>
+                    <td>@Html.ActionLink("Buy", "Order", new { id = item.ProductId })</td>
+                   
+
+                
+            </tr>
+            }
+        </table>
+        
+    </div>
+    
+</div>
+
